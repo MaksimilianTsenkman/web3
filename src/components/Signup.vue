@@ -71,17 +71,33 @@ export default {
       const startsWithUppercase = /^[A-Z]/;
       const includesUnderscore = /_/;
 
-      if (
-        !minLength.test(this.password) ||
-        !maxLength.test(this.password) ||
-        !uppercase.test(this.password) ||
-        !lowercase.test(this.password) ||
-        !numeric.test(this.password) ||
-        !startsWithUppercase.test(this.password) ||
-        !includesUnderscore.test(this.password)
-      ) {
-        this.passwordErrorMessage = 'Password is not valid.';
-      }else {
+      let errors = []; // Store error messages for individual conditions
+
+      if (!minLength.test(this.password)) {
+        errors.push('Minimum length: 8 characters.');
+      }
+      if (!maxLength.test(this.password)) {
+        errors.push('Maximum length: 14 characters.');
+      }
+      if (!uppercase.test(this.password)) {
+        errors.push('At least one uppercase letter.');
+      }
+      if (!lowercase.test(this.password)) {
+        errors.push('At least two lowercase letters.');
+      }
+      if (!numeric.test(this.password)) {
+        errors.push('At least one numeric value.');
+      }
+      if (!startsWithUppercase.test(this.password)) {
+        errors.push('Should start with an uppercase letter.');
+      }
+      if (!includesUnderscore.test(this.password)) {
+        errors.push('Should include the character "_".');
+      }
+
+      if (errors.length > 0) {
+        this.passwordErrorMessage = `Password is not valid. Conditions: ${errors.join(' ')}`;
+      } else {
         this.passwordErrorMessage = ''; // Clear the error message if the password is valid
       }
   }
