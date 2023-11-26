@@ -4,8 +4,11 @@
       <li><router-link to="/" id="home">Home</router-link></li>
       <li><router-link to="/addPost">Add Post</router-link></li>
       <li><router-link to="/signup">Signup</router-link></li>
-      <div class="user-profile">
-        <a id="logo" class="logo" href="login.html"><img src="me.jpg" width="60" height="60" alt="My picture" id="user-photo"></a>
+      
+    </ul>
+
+    <div class="user-profile">
+        <a id="logo" class="logo" href="#"><img src="me.jpg" width="60" height="60" alt="My picture" id="user-photo"></a>
         <div class="dropdown" id="dropdown">
           <ul>
             <li><a href="#">John Doe</a></li>
@@ -13,8 +16,7 @@
             <li><a href="#">logout</a></li>
           </ul>
         </div>
-      </div>
-    </ul>
+    </div>
   </nav>
 
 
@@ -71,6 +73,10 @@ nav a.router-link-exact-active {
 
 .logo {
     margin-right: 10px;
+}
+
+.user-profile {
+  margin-left:auto;
 }
 </style>
 <script setup>
