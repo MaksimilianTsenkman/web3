@@ -39,7 +39,7 @@
 
 
 <script>
-// import { fetchData } from './get_data_api.js';
+import { fetchData, createPosts } from './get_data_api.js';
 export default {
   name: 'HelloWorld',
   data() {
@@ -47,12 +47,25 @@ export default {
       message: 'Hello from Vue!',
     };
   },
-  // mounted() {
-  //   fetchData();
-  // },
-};
+  methods: {
+    async fetchData() {
+      try {
+        this.dataArray = await fetchData();
+        this.createPosts();
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    },
+    createPosts() {
+      const container = document.querySelector("#posts-container");
+      createPosts(this.dataArray, container);
+    },
+  },
+  mounted() {
+    this.fetchData();
+  },
+}
 </script>
-
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
