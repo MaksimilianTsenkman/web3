@@ -125,7 +125,6 @@ a {
     display: flex;
     flex-direction: row;
     justify-content:center;
-    margin-top: 200px;
     background-color: #b6b5ba;
 }
 
@@ -166,6 +165,17 @@ a {
     justify-content: space-between;
 }
 
+.like-bar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.like {
+    cursor: pointer;
+}
+
+
 .reseter {
     padding: 10px 20px;
     background-color: #3498db;
@@ -174,8 +184,10 @@ a {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
+ }
+  
 .reseter:hover {
     background-color: #2980b9;
 }
+
+

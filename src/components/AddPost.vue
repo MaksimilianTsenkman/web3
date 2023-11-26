@@ -16,6 +16,11 @@
       </form>
     </div>
   </main>
+  <footer>
+      <div>
+        <p class="footer" >Copyright © All Rights Reserved</p>
+      </div>
+    </footer>
 </template>
 
 

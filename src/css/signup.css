@@ -193,3 +193,10 @@ a {
     color: #333;
     display: block;
 }
+
+.password-error {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+    margin-left: 10px;
+  }

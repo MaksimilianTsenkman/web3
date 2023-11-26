@@ -16,8 +16,13 @@
   <div>
     <button class="reseter" @click="reselLikes">Reset Likes</button>
   </div>
-
+<footer>
+      <div>
+        <p class="copyright" >Copyright © All Rights Reserved</p>
+      </div>
+    </footer>
 </template>
+
 
 <script>
 export default {
