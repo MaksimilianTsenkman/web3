@@ -7,11 +7,13 @@
         </ul>
         <img class="post-img" src="./images/tartu_2024.jpg" alt="Tartu 2024 sign"/>
         <p class="title"> Tartu 2022 </p>
-        <a class="like" href="#" @click="likePost">
-          <img id="like" src="./images/like.png" alt="like icon">
-        </a>
+        <div class="like-bar">
+          <a class="like" href="#" @click="likePost">
+            <img id="like" src="./images/like.png" alt="like icon">
+          </a>
         <p class="likes"> 0 likes </p>
-      </div>
+        </div>
+        </div>
       <div id="posts-container"></div>
     </main>
     <footer>

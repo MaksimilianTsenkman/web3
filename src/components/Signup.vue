@@ -71,7 +71,7 @@ export default {
       const startsWithUppercase = /^[A-Z]/;
       const includesUnderscore = /_/;
 
-      let errors = []; // Store error messages for individual conditions
+      let errors = []; 
 
       if (!minLength.test(this.password)) {
         errors.push('Minimum length: 8 characters.');
@@ -98,7 +98,7 @@ export default {
       if (errors.length > 0) {
         this.passwordErrorMessage = `Password is not valid. Conditions: ${errors.join(' ')}`;
       } else {
-        this.passwordErrorMessage = ''; // Clear the error message if the password is valid
+        this.passwordErrorMessage = '';
       }
   }
  }
