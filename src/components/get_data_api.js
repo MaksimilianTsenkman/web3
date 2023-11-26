@@ -7,6 +7,7 @@ export function createPosts(dataArray) {
         const postImage = postTemplate.querySelector(".post-img");
         const postText = postTemplate.querySelector(".title");
         const like = postTemplate.querySelector(".like");
+        const numLikes = postTemplate.querySelector(".likes")
 
         if (data.post_image === "") {
             postTemplate.querySelector(".post-img").remove();
