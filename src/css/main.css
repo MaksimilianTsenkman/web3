@@ -159,3 +159,9 @@ a {
     color: #333;
     display: block;
 }
+
+.likes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

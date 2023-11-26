@@ -22,8 +22,14 @@ export default createStore({
         }
         const textData = await response.text();
         const jsonData = JSON.parse(textData);
-        commit('setPosts', jsonData);
-        createPosts(jsonData.posts);
+        commit('setPosts', jsonData.posts);
+        const updatedData = jsonData.posts.map((post) => {
+          return {
+            ...post,
+            likes: 0,
+          };
+        });
+        createPosts(updatedData);
       } catch (error) {
         console.error('Error:', error);
         commit('setPosts', []);

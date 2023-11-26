@@ -7,9 +7,11 @@
         </ul>
         <img class="post-img" src="./images/tartu_2024.jpg" alt="Tartu 2024 sign"/>
         <p class="title"> Tartu 2022 </p>
-        <a href="#"><img id="like" src="./images/like.png" alt="like icon"></a>
+        <a class="like" href="#" @click="likePost">
+          <img id="like" src="./images/like.png" alt="like icon">
+        </a>
+        <p class="likes"> 0 likes </p>
       </div>
-
       <div id="posts-container"></div>
     </main>
 </template>
@@ -22,9 +24,16 @@ export default {
       return this.$store.getters.getPosts;
     },
   },
+  methods: {
+    likePost() {
+      const post = this.posts[0];
+      post.likes++;
+      this.$store.dispatch('likePost', post);
+    },
+  },
   mounted() {
     this.$store.dispatch('fetchPosts');
-  },
+  }
 }
 </script>
 
