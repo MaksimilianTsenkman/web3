@@ -16,30 +16,14 @@
 
 
 <script>
-import { fetchData, createPosts } from './get_data_api.js';
 export default {
-  name: 'HelloWorld',
-  data() {
-    return {
-      message: 'Hello from Vue!',
-    };
-  },
-  methods: {
-    async fetchData() {
-      try {
-        this.dataArray = await fetchData();
-        this.createPosts();
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    },
-    createPosts() {
-      const container = document.querySelector("#posts-container");
-      createPosts(this.dataArray, container);
+  computed: {
+    posts() {
+      return this.$store.getters.getPosts;
     },
   },
   mounted() {
-    this.fetchData();
+    this.$store.dispatch('fetchPosts');
   },
 }
 </script>

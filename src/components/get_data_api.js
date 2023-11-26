@@ -1,19 +1,4 @@
-export async function fetchData() {
-    try {
-        const response = await fetch('https://api.npoint.io/ac825739cb1f2120f5e7');
-        if (!response.ok) {
-            throw new Error('Error retrieving data from the server');
-        }
-        const textData = await response.text();
-        const jsonData = JSON.parse(textData);
-        return jsonData.posts;
-    } catch (error) {
-        console.error('Error:', error);
-        return [];
-    }
-}
-
-export function createPosts(dataArray, container) {
+export function createPosts(dataArray) {
     dataArray.forEach((data) => {
         const postTemplate = document.querySelector(".post").cloneNode(true);
         postTemplate.removeAttribute("hidden");
@@ -29,6 +14,6 @@ export function createPosts(dataArray, container) {
         postDate.textContent = data.date;
         postImage.src = data.post_image;
 
-        container.appendChild(postTemplate);
+        document.getElementById("posts-container").appendChild(postTemplate);
     });
 }
