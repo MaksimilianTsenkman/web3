@@ -1,22 +1,4 @@
 <template>
-  <header class="header">
-    <ul class="nav">
-      <li><a href="index.html" id="home">home</a></li>
-      <li><a href="addPost.html">add post</a></li>
-    </ul>
-
-    <div class="user-profile">
-      <a id="logo" class="logo" href="login.html"><img src="res/images/me.jpg" width="60" height="60" alt="My picture" id="user-photo"></a>
-      <div class="dropdown" id="dropdown">
-        <ul>
-          <li><a href="#">John Doe</a></li>
-          <li><a href="#">john.doe@ut.ee</a></li>
-          <li><a href="#">logout</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
-
   <main>
     <div class="container">
       <form action="#" method="post">
@@ -34,12 +16,6 @@
       </form>
     </div>
   </main>
-
-  <footer>
-    <div>
-      <p class="copyright" >Copyright © All Rights Reserved</p>
-    </div>
-  </footer>
 </template>
 
 
