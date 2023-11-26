@@ -1,26 +1,8 @@
 <template>
   <body>
-  <header class="header">
-    <ul class="nav">
-      <li><a href="index.html" id="home">home</a></li>
-      <li><a href="addPost.html">add post</a></li>
-    </ul>
-
-    <div class="user-profile">
-      <a id="logo" class="logo" href="login.html"><img src="res/images/me.jpg" width="60" height="60" alt="My picture" id="user-photo"></a>
-      <div class="dropdown" id="dropdown">
-        <ul>
-          <li><a href="#">John Doe</a></li>
-          <li><a href="#">john.doe@ut.ee</a></li>
-          <li><a href="#">logout</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
-
   <main>
     <div id="container">
-      <form action="#" method="post">
+      <form action="#" method="post" @submit.prevent="submitForm">
         <ul class="actions">
           <li><h4>Welcome to PostIt</h4></li>
           <li><a href="#" class="create-account">Create an account</a></li>
@@ -34,8 +16,17 @@
         </div>
         <div class="form-group">
           <label for="password">
-            <input required id="password" class="input" type="password" placeholder="Password">
+            <input
+             required 
+             id="password" 
+             class="input" 
+             type="password" 
+             placeholder="Password"
+             v-model="password"
+             @input="validatePassword"
+             >
           </label>
+          <p v-if="passwordErrorMessage" class="password-error">{{ passwordErrorMessage }}</p>
         </div>
         <ul class="actions">
           <li>
@@ -62,9 +53,39 @@ export default {
   name: 'SignupView',
   data() {
     return {
-      message: 'Hello from Vue!',
+      //message: 'Hello from Vue!',
+      password: '',
+      passwordErrorMessage: '',
     };
   },
+  methods: {
+    submitForm() {
+    },
+
+    validatePassword() {
+      const minLength = /^.{8,}$/;
+      const maxLength = /^.{0,14}$/;
+      const uppercase = /[A-Z]/;
+      const lowercase = /[a-z].*[a-z]/;
+      const numeric = /\d/;
+      const startsWithUppercase = /^[A-Z]/;
+      const includesUnderscore = /_/;
+
+      if (
+        !minLength.test(this.password) ||
+        !maxLength.test(this.password) ||
+        !uppercase.test(this.password) ||
+        !lowercase.test(this.password) ||
+        !numeric.test(this.password) ||
+        !startsWithUppercase.test(this.password) ||
+        !includesUnderscore.test(this.password)
+      ) {
+        this.passwordErrorMessage = 'Password is not valid.';
+      }else {
+        this.passwordErrorMessage = ''; // Clear the error message if the password is valid
+      }
+  }
+ }
 };
 </script>
 
