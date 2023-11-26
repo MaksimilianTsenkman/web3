@@ -7,9 +7,11 @@
         </ul>
         <img class="post-img" src="./images/tartu_2024.jpg" alt="Tartu 2024 sign"/>
         <p class="title"> Tartu 2022 </p>
-        <a href="#"><img id="like" src="./images/like.png" alt="like icon"></a>
+        <a class="like" href="#" @click="likePost">
+          <img id="like" src="./images/like.png" alt="like icon">
+        </a>
+        <p class="likes"> 0 likes </p>
       </div>
-
       <div id="posts-container"></div>
     </main>
     <footer>
@@ -21,31 +23,22 @@
 
 
 <script>
-import { fetchData, createPosts } from './get_data_api.js';
 export default {
-  name: 'HelloWorld',
-  data() {
-    return {
-      message: 'Hello from Vue!',
-    };
+  computed: {
+    posts() {
+      return this.$store.getters.getPosts;
+    },
   },
   methods: {
-    async fetchData() {
-      try {
-        this.dataArray = await fetchData();
-        this.createPosts();
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    },
-    createPosts() {
-      const container = document.querySelector("#posts-container");
-      createPosts(this.dataArray, container);
+    likePost() {
+      const post = this.posts[0];
+      post.likes++;
+      this.$store.dispatch('likePost', post);
     },
   },
   mounted() {
-    this.fetchData();
-  },
+    this.$store.dispatch('fetchPosts');
+  }
 }
 </script>
 
