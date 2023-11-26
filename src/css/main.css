@@ -165,3 +165,17 @@ a {
     flex-direction: row;
     justify-content: space-between;
 }
+
+.reseter {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reseter:hover {
+    background-color: #2980b9;
+}
