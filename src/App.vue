@@ -8,7 +8,7 @@
     </ul>
 
     <div class="user-profile">
-        <a id="logo" class="logo" href="#"><img src="me.jpg" width="60" height="60" alt="My picture" id="user-photo"></a>
+        <a id="logo" class="logo" href="#"><img src="./components/images/me.jpg" width="60" height="60" alt="My picture" id="user-photo"></a>
         <div class="dropdown" id="dropdown">
           <ul>
             <li><a href="#">John Doe</a></li>
@@ -20,7 +20,6 @@
   </nav>
   <router-view/>
 </template>
-
 
 
 <style>

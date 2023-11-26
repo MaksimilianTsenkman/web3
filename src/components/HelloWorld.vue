@@ -7,10 +7,12 @@
       </ul>
       <img class="post-img" :src="post.post_image"/>
       <p class="title">{{ post.post_title }}</p>
+      <div class="like-bar">
       <a class="like">
         <img id="like" src="./images/like.png" alt="like icon" @click="likePost(post)">
       </a>
       <p class="likes">{{ post.likes }} likes</p>
+    </div>
     </div>
   </div>
   <div>
