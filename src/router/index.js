@@ -2,12 +2,22 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AddPostView from "@/views/AddPostView.vue";
 import SignupView from "@/views/SignupView.vue";
+import auth from "../auth";
+
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    beforeEnter: async(to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+        next('/signup')
+      } else {
+        next();
+      }
+    }
   },
   {
     path: '/addPost',

@@ -29,9 +29,43 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
-      message: 'Hello from Vue!',
+      post: {
+        body: "",
+        date: "",
+      },
     };
   },
+  methods: {
+    addPost() {
+      var today = new Date().toISOString().split('T')[0];
+      this.post.date = today;
+
+      var data = {
+        title: this.post.title,
+        body: this.post.body,
+        date: today,
+        link: this.post.link,
+      };
+      fetch("http://localhost:3000/addPost", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+          .then((response) => {
+            console.log(response.data);
+            this.$router.push("/api/allposts");
+          })
+          .catch((e) => {
+            console.log(e);
+            console.log("error");
+          });
+    },
+  },
+  mounted() {
+    this.addPost();
+  }
 };
 </script>
 
