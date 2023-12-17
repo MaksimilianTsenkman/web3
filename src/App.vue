@@ -3,8 +3,9 @@
     <ul class="nav">
       <li><router-link to="/" id="home">Home</router-link></li>
       <li><router-link to="/addPost">Add Post</router-link></li>
-      <li><router-link to="/signup">Signup</router-link></li>
-      
+      <li><router-link to="/login">Log In</router-link></li>
+      <!--<li><router-link to="/signup">Signup</router-link></li>-->
+    
     </ul>
 
     <div class="user-profile">

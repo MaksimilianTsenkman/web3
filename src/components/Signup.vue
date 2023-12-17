@@ -1,110 +1,110 @@
 <template>
-  <body>
-  <main>
-    <div id="container">
-      <form action="#" method="post" @submit.prevent="submitForm">
-        <ul class="actions">
-          <li><h4>Welcome to PostIt</h4></li>
-          <li><a href="#" class="create-account">Create an account</a></li>
-          <li><p>or</p></li>
-          <li><p>Please log in</p></li>
-        </ul>
-        <div class="form-group">
-          <label for="email">
-            <input required id="email" class="input" type="email" placeholder="Email">
-          </label>
-        </div>
-        <div class="form-group">
-          <label for="password">
-            <input
-             required 
-             id="password" 
-             class="input" 
-             type="password" 
-             placeholder="Password"
-             v-model="password"
-             @input="validatePassword"
-             >
-          </label>
-          <p v-if="passwordErrorMessage" class="password-error">{{ passwordErrorMessage }}</p>
-        </div>
-        <ul class="actions">
-          <li>
-            <a href="index.html"><button type="submit" class="login-button">Log in</button></a>
-          </li>
-          <li>
-            <a href="#" class="forgot-password">Forgot password?</a>
-          </li>
-        </ul>
-      </form>
-    </div>
-  </main>
-  <footer>
-      <div>
-        <p class="copyright" >Copyright © All Rights Reserved</p>
-      </div>
-    </footer> 
-  </body>
+  <div class="form">
+    <h3>SignUp</h3>
+    <label for="email">Email</label>
+    <input type="email" name="email"  required v-model="email">
+    <label for="password">Password</label>
+    <input type="password" name="password" required v-model="password">
+    <button @click="SignUp" class="SignUp">SignUp</button>
+  </div>
 </template>
-
 
 <script>
 export default {
-  name: 'SignupView',
-  data() {
+name: "SignUp", 
+
+data: function() {
     return {
-      //message: 'Hello from Vue!',
-      password: '',
-      passwordErrorMessage: '',
-    };
+   email: '',
+   password: '',
+  }
   },
   methods: {
-    submitForm() {
+
+
+SignUp() {
+      var data = {
+        email: this.email,
+        password: this.password
+      };
+      // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
+      fetch("http://localhost:3000/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+          credentials: 'include', //  Don't forget to specify this if you need cookies
+          body: JSON.stringify(data),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+      console.log(data);
+      this.$router.push("/");
+      //location.assign("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error");
+      });
     },
-
-    validatePassword() {
-      const minLength = /^.{8,}$/;
-      const maxLength = /^.{0,14}$/;
-      const uppercase = /[A-Z]/;
-      const lowercase = /[a-z].*[a-z]/;
-      const numeric = /\d/;
-      const startsWithUppercase = /^[A-Z]/;
-      const includesUnderscore = /_/;
-
-      let errors = []; 
-
-      if (!minLength.test(this.password)) {
-        errors.push('Minimum length: 8 characters.');
-      }
-      if (!maxLength.test(this.password)) {
-        errors.push('Maximum length: 14 characters.');
-      }
-      if (!uppercase.test(this.password)) {
-        errors.push('At least one uppercase letter.');
-      }
-      if (!lowercase.test(this.password)) {
-        errors.push('At least two lowercase letters.');
-      }
-      if (!numeric.test(this.password)) {
-        errors.push('At least one numeric value.');
-      }
-      if (!startsWithUppercase.test(this.password)) {
-        errors.push('Should start with an uppercase letter.');
-      }
-      if (!includesUnderscore.test(this.password)) {
-        errors.push('Should include the character "_".');
-      }
-
-      if (errors.length > 0) {
-        this.passwordErrorMessage = `Password is not valid. Conditions: ${errors.join(' ')}`;
-      } else {
-        this.passwordErrorMessage = '';
-      }
+  }, 
   }
- }
-};
 </script>
 
 <style scoped>
-@import "@/css/signup.css";
+/* Updated CSS for SignUp Page */
+.form {
+  max-width: 420px;
+  margin: 30px auto;
+  background: #f5f5f5;
+  text-align: left;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  text-align: center;
+  color: #086e6e;
+}
+
+label {
+  color: #086e6e;
+  display: inline-block;
+  margin: 15px 0;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+input {
+  display: block;
+  padding: 10px;
+  width: calc(100% - 20px);
+  margin: 8px 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input:focus {
+  outline: none;
+  border-color: dodgerblue;
+}
+
+button {
+  background: dodgerblue;
+  border: 0;
+  padding: 12px 24px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+  background: #0099ff;
+}
+
 </style>
