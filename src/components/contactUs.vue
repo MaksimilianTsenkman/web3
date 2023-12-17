@@ -1,15 +1,22 @@
 <template>
-    <div class="contacts">
-      <h1>Contact List</h1>
-      <ul class="contact-list">
-        <li v-for="(contact, index) in contacts" :key="index">
-          <span>{{ contact.name }}</span>
-          <span>{{ contact.email }}</span>
-          <span>{{ contact.phone }}</span>
-        </li>
-      </ul>
+    <div id="app">
+        <div class="content">
+            <div class="contacts">
+            <h1>Contact List</h1>
+            <ul class="contact-list">
+                <li v-for="(contact, index) in contacts" :key="index">
+                <span>{{ contact.name }}</span>
+                <span>{{ contact.email }}</span>
+                <span>{{ contact.phone }}</span>
+                </li>
+            </ul>
+            </div>
+        </div>
     </div>
-  </template>
+    <footer class="footer">
+      <p>Copyright © All Rights Reserved</p>
+    </footer>
+</template>
   
   <script>
   export default {
@@ -52,5 +59,22 @@
     flex: 1;
     margin-right: 10px;
   }
-  </style>
+  .copyright {
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    background-color: #b6b5ba;
+}
+#app {
+    flex-direction: column;
+    min-height: 100vh;
+  }
   
+  .footer {
+    background-color: #b6b5ba;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+  }
+  </style>

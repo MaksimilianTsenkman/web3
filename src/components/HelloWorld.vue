@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div id="app">
+    <div class="container">
     <button @click="Logout" class="center logout-button">Logout</button>
   </div>
   <div class="post">
@@ -16,11 +17,10 @@
     <button class="delete-all" @click="deleteAllPosts">Delete All Posts</button>
     <router-link to="/addPost" class="add-post">Add Post</router-link> 
   </div>
-<footer>
-      <div>
-        <p class="copyright" >Copyright © All Rights Reserved</p>
-      </div>
-    </footer>
+  </div>
+  <footer class="footer">
+      <p>Copyright © All Rights Reserved</p>
+  </footer>
 </template>
 
 
@@ -121,5 +121,17 @@ export default {
   cursor: pointer;
   margin-right: 10px;
 }
-
+#app {
+    flex-direction: column;
+    min-height: 100vh;
+}
+  
+.footer {
+    background-color: #b6b5ba;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    margin-top: 30px;
+  }
 </style>
