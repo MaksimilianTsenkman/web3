@@ -25,7 +25,6 @@ export default {
         body: this.post.body,
         date: today,
       };
-      // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
       fetch("http://localhost:3000/addPost", {
         method: "POST",
         headers: {
