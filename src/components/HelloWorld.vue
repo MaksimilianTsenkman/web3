@@ -10,7 +10,7 @@
         <p class="date">{{ post.date }}</p>
       </ul>
       <img class="post-img" :src="post.post_image"/>
-      <p class="title">{{ post.post_title }}</p>
+      <p class="title">{{ post.body }}</p>
       <div class="like-bar">
       <a class="like">
         <img id="like" src="./images/like.png" alt="like icon" @click="likePost(post)">
@@ -31,42 +31,46 @@
 
 
 <script>
+import auth from "../auth";
+
 export default {
-  data: function(){
-    //authResult: auth.authenticated()
-  },
-  computed: {
-    posts() {
-      return this.$store.getters.getPosts;
-    },
+  name: "AllPosts",
+  data() {
+    return {
+      posts: [],
+      authResult: auth.authenticated()
+    };
   },
   methods: {
     Logout() {
       fetch("http://localhost:3000/auth/logout", {
-          credentials: 'include', //  Don't forget to specify this if you need cookies
+        credentials: 'include', //  Don't forget to specify this if you need cookies
       })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        console.log('jwt removed');
-        //console.log('jwt removed:' + auth.authenticated());
-        this.$router.push("/login");
-        //location.assign("/");
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log("error logout");
-      });
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            console.log('jwt removed');
+            //console.log('jwt removed:' + auth.authenticated());
+            this.$router.push("/login");
+            //location.assign("/");
+          })
+          .catch((e) => {
+            console.log(e);
+            console.log("error logout");
+          });
+    },
+    fetchPosts() {
+      fetch(`http://localhost:3000/posts/`)
+          .then((response) => response.json())
+          .then((data) => (this.posts = data))
+          .catch((err) => console.log(err.message));
     },
   },
   mounted() {
-    this.$store.dispatch('fetchPosts');
-    fetch('https://jsonplaceholder.typicode.com/posts')
-        .then((response) => response.json())
-        .then(data => this.posts = data)
-        .catch(err => console.log(err.message))
-  }
-}
+    this.fetchPosts();
+    console.log("mounted");
+  },
+};
 </script>
 
 <style scoped>

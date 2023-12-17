@@ -19,11 +19,14 @@ export default {
   },
   methods: {
     addPost() {
+      var today = new Date().toISOString().split('T')[0];
+      this.post.date = today;
       var data = {
         body: this.post.body,
+        date: today,
       };
       // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
-      fetch("http://localhost:3000/api/posts", {
+      fetch("http://localhost:3000/addPost", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +36,7 @@ export default {
       .then((response) => {
         console.log(response.data);
         // redirect to /allposts view
-        this.$router.push("/api/allposts");
+        this.$router.push("/");
       })
       .catch((e) => {
         console.log(e);
