@@ -5,6 +5,7 @@ import SignupView from "@/views/SignupView.vue";
 import LogIn from "@/views/LogIn.vue"
 import APost from "@/views/APost.vue"
 import auth from "../auth";
+import contactUs from "@/views/contactUs.vue"
 
 const routes = [
   {
@@ -55,7 +56,12 @@ const routes = [
         next();
       }
     }
-  }
+  },
+  {
+    path: '/contacts',
+    name: 'contacts',
+    component: contactUs
+  },
 ]
 
 const router = createRouter({

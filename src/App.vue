@@ -6,18 +6,12 @@
       <!--<li><router-link to="/login">Log In</router-link></li>-->  
       <!--<li><router-link to="/signup">Signup</router-link></li>-->
       <!--<li><router-link to="/apost">APost</router-link></li>-->
+      <li><router-link to="/contacts" id="contacts">Contacts</router-link></li>      
     
     </ul>
 
     <div class="user-profile">
         <a id="logo" class="logo" href="#"><img src="./components/images/me.jpg" width="60" height="60" alt="My picture" id="user-photo"></a>
-        <div class="dropdown" id="dropdown">
-          <ul>
-            <li><a href="#">John Doe</a></li>
-            <li><a href="#">john.doe@ut.ee</a></li>
-            <li><a href="#">logout</a></li>
-          </ul>
-        </div>
     </div>
   </nav>
   <router-view/>
