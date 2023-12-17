@@ -1,41 +1,110 @@
 <template>
-  <main>
-    <div class="container">
-      <form action="#" method="post">
-        <div class="form-group">
-          <label for="postBodyName">Post <br> body</label>
-          <textarea placeholder="textarea" id="postBodyName" name="postBodyName" rows="4"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="file">Select <br> file</label>
-          <input type="file" id="file" name="file">
-        </div>
-        <div class="actions">
-          <a href="index.html"><button type="submit" class="btn">Add post</button></a>
-        </div>
-      </form>
-    </div>
-  </main>
-  <footer>
-      <div>
-        <p class="footer" >Copyright © All Rights Reserved</p>
-      </div>
-    </footer>
+  <div class="form">
+    <h3>Add a Post</h3>
+    <label for="title">Title: </label>
+    <input name="title" type="text" id="title" required v-model="post.title" />
+    <label for="body">Body: </label>
+    <input name="body" type="text" id="body" required v-model="post.body" />
+    <label for="date">Date: </label>
+    <input name="date" type="text" id="date" required v-model="post.date" />
+    <label for="link">Link: </label>
+    <input name="link"  type="text" id="link" required v-model="post.urllink"/>
+    <button @click="addPost" class="addPost">Add Post</button>
+  </div>
 </template>
-
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "AddPost",
   data() {
     return {
-      message: 'Hello from Vue!',
+      post: {
+        title: "",
+        body: "",
+        date: "",
+        link: "",
+      },
     };
+  },
+  methods: {
+    addPost() {
+      var data = {
+        title: this.post.title,
+        body: this.post.body,
+        date: this.post.date,
+        link: this.post.link,
+      };
+      // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
+      fetch("http://localhost:3000/api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+      .then((response) => {
+        console.log(response.data);
+        // redirect to /allposts view
+        this.$router.push("/api/allposts");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error");
+      });
+    },
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "@/css/posts.css";
+.form {
+  max-width: 420px;
+  margin: 30px auto;
+  background: #f5f5f5;
+  text-align: center;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  color: #333;
+}
+
+label {
+  color: #555;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}
+
+input {
+  display: block;
+  padding: 10px;
+  width: calc(100% - 20px);
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input:focus {
+  outline: none;
+  border-color: dodgerblue;
+}
+
+button {
+  background: dodgerblue;
+  border: 0;
+  padding: 12px 24px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+  background: #0099ff;
+}
 </style>
