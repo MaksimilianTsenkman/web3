@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <!--v-if = "authResult" has to be added to the button-->
     <button @click="Logout" class="center logout-button">Logout</button>
   </div>
   <div class="post">
@@ -11,16 +10,11 @@
       </ul>
       <img class="post-img" :src="post.post_image"/>
       <p class="title">{{ post.body }}</p>
-      <div class="like-bar">
-      <a class="like">
-        <img id="like" src="./images/like.png" alt="like icon" @click="likePost(post)">
-      </a>
-      <p class="likes">{{ post.likes }} likes</p>
-    </div>
     </div>
   </div>
-  <div>
-    <button class="reseter" @click="reselLikes">Reset Likes</button>
+  <div class="button-container">
+    <button class="delete-all" @click="deleteAllPosts">Delete All Posts</button>
+    <router-link to="/addPost" class="add-post">Add Post</router-link> 
   </div>
 <footer>
       <div>
@@ -57,7 +51,20 @@ export default {
           .catch((e) => {
             console.log(e);
             console.log("error logout");
-          });
+          })
+    },
+    deleteAllPosts() {
+      fetch("http://localhost:3000/posts/", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => {
+          console.log(response.data);
+          //this.posts = [];
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     fetchPosts() {
       fetch(`http://localhost:3000/posts/`)
@@ -96,4 +103,23 @@ export default {
   font-size: 1em;
   cursor: pointer;
 }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.delete-all,
+.add-post {
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
 </style>
