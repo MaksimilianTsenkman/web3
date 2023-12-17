@@ -15,7 +15,7 @@ const routes = [
     beforeEnter: async(to, from, next) => {
       let authResult = await auth.authenticated();
       if (!authResult) {
-        next('/signup')
+        next('/login')
       } else {
         next();
       }
@@ -28,7 +28,7 @@ const routes = [
     beforeEnter: async(to, from, next) => {
       let authResult = await auth.authenticated();
       if (!authResult) {
-        next('/signup')
+        next('/login')
       } else {
         next();
       }
@@ -45,13 +45,13 @@ const routes = [
     component: LogIn
   },
   {
-    path: '/apost',
+    path: '/apost/:id',
     name: 'apost',
     component: APost,
     beforeEnter: async(to, from, next) => {
       let authResult = await auth.authenticated();
       if (!authResult) {
-        next('/signup')
+        next('/login')
       } else {
         next();
       }

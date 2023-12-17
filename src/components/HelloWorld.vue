@@ -3,14 +3,14 @@
     <button @click="Logout" class="center logout-button">Logout</button>
   </div>
   <div class="post">
-    <div v-for="post in posts" :key="post.id">
-      <ul class="post-nav">
+    <router-link v-for="post in posts" :to="'/apost/' + post.id" :key="post.id">
+       <ul class="post-nav">
         <a class="post-logo" href="#"><img src="./images/me.jpg" width="50" height="50" alt="My picture"></a>
         <p class="date">{{ post.date }}</p>
       </ul>
       <img class="post-img" :src="post.post_image"/>
       <p class="title">{{ post.body }}</p>
-    </div>
+    </router-link>
   </div>
   <div class="button-container">
     <button class="delete-all" @click="deleteAllPosts">Delete All Posts</button>
@@ -54,13 +54,13 @@ export default {
           })
     },
     deleteAllPosts() {
-      fetch("http://localhost:3000/posts/", {
-        method: "DELETE",
+      fetch("http://localhost:3000/posts/delete/", {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
       })
         .then((response) => {
           console.log(response.data);
-          //this.posts = [];
+          this.posts = []
         })
         .catch((e) => {
           console.log(e);
